@@ -5,11 +5,12 @@
 - Vigener cipher
 - Vernam (XOR) cipher
 - Files or terminal input and output
+- Client/server encrypted communication with secure key exchange
+
 ### Steganography:
 - Identical chars steganography for texts (my own)
 
 # Coming soon
-- Client/server communication using ciphers with smart key exchange
 - More complex ciphers
 - More complex stegano
 - More fun
@@ -26,6 +27,7 @@ pip install -r requirements.txt
 usage: main.py [-h] [-iF INPUT_FILE] [-oF OUTPUT_FILE]
                [-c {caesar,vigener,vernam,caesar_breaker}] [-k KEY]
                [-st {identical_chars}] [-mF MSG_FILE] [-e | -d] [-i | -ej]
+               [--server] [--client] [-p PORT] [--ip IP]
 
 Apply ciphers to files and texts
 
@@ -42,8 +44,8 @@ optional arguments:
   -k KEY, --key KEY     Key for the cipher
   -st {identical_chars}, --stegano {identical_chars}
                         Stegano algorithm to use. Identical chars stegano
-                        encrypts bitsof information using chars that looks
-                        identical in Russian and Englishlayouts
+                        encrypts bits of information using chars that looks
+                        identical in Russian and English layouts
   -mF MSG_FILE, --msg-file MSG_FILE
                         File containing the message for stegano. If doesn't
                         set, message will be read from standard input. Message
@@ -52,4 +54,12 @@ optional arguments:
   -d, --decrypt         Decrypt using cipher
   -i, --inject          Inject message using stegano
   -ej, --eject          Eject message using stegano
+  --server              Run server, listen for connection and exchange
+                        encrypted messages with client.Key exchange are
+                        secure, so Eve can't eavesdrop Alice and Bob
+                        conversation
+  --client              Create client, connect to server and exchange
+                        encrypted messages with it
+  -p PORT, --port PORT  Port to listen or to connect
+  --ip IP               Address to connect to
 ```
